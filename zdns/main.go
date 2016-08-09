@@ -35,6 +35,7 @@ import (
 	_ "github.com/zmap/zdns/modules/nslookup"
 	_ "github.com/zmap/zdns/modules/spf"
 	_ "github.com/zmap/zdns/modules/txt"
+	_ "github.com/brandonpoc/zdns/modules/ptr"
 )
 
 func main() {
