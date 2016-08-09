@@ -15,6 +15,8 @@
 package ptr
 
 import (
+	"strings"
+
 	"github.com/miekg/dns"
 	"github.com/zmap/zdns"
 	"github.com/zmap/zdns/modules/miekg"
@@ -29,7 +31,9 @@ type Lookup struct {
 
 func (s *Lookup) DoLookup(name string) (interface{}, zdns.Status, error) {
 	nameServer := s.Factory.Factory.RandomNameServer()
-	return miekg.DoLookup(s.Factory.Client, s.Factory.TCPClient, nameServer, dns.TypePTR, name)
+	ipParts := strings.Split(name, ".")
+	ptrRequest := ipParts[3] + "." + ipParts[2] + "." + ipParts[1] + "." + ipParts[0] + ".in-addr.arpa"
+	return miekg.DoLookup(s.Factory.Client, s.Factory.TCPClient, nameServer, dns.TypePTR, ptrRequest)
 }
 
 // Per GoRoutine Factory ======================================================
