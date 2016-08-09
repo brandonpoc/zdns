@@ -20,6 +20,7 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	"fmt"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/zmap/zdns"
